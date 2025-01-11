@@ -1,3 +1,7 @@
+"""
+URLs for users
+"""
+
 from django.urls import path
 from .users_view import UsersListView
 

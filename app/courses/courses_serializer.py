@@ -1,15 +1,20 @@
+"""
+Serializer for Courses.
+"""
+
 from rest_framework import serializers
-from .courses_model import CoursesModel
-from .lessons_model import LessonsModel
+from ..courses.courses_model import CoursesModel
+from ..courses.lessons_serializer import LessonsSerializer
 
-class LessonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LessonsModel
-        fields = ['id', 'title', 'content', 'video_url', 'order']
-
-class CourseSerializer(serializers.ModelSerializer):
-    lessons = LessonSerializer(many=True, read_only=True)
+class CoursesSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the CoursesModel.
+    """
+    lessons = LessonsSerializer(many=True, read_only=True)
 
     class Meta:
+        """
+        Meta class for CoursesSerializer.
+        """
         model = CoursesModel
         fields = ['id', 'title', 'description', 'instructor', 'created_at', 'lessons']

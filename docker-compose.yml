@@ -4,22 +4,26 @@ services:
   web:
     build:
       context: .
-    container_name: learndashapp_web
-    command: gunicorn --bind 0.0.0.0:8000 lms.wsgi:application
+    container_name: web
+    command: /app/entrypoint.sh gunicorn --bind 0.0.0.0:8000 app.wsgi:application
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgres://root:secret@db:5432/learndashdb  # Optional: You can override or add additional environment variables here
 
   db:
     image: postgres:15
-    container_name: learndashapp_db
+    container_name: db
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: lms_db
+      - POSTGRES_DB=learndashdb
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
     ports:
       - "5432:5432"
     volumes:
@@ -27,3 +31,5 @@ services:
 
 volumes:
   postgres_data:
+  staticfiles:
+  media:

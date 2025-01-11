@@ -1,3 +1,7 @@
+"""
+URL configuration for users
+"""
+
 from django.urls import path
 from .courses_list_create_view import CourseListCreateView
 
