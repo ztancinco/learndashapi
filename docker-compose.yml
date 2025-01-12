@@ -15,8 +15,7 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: postgres://root:secret@db:5432/learndashdb  # Optional: You can override or add additional environment variables here
-
+      DATABASE_URL: postgres://root:secret@db:5432/learndashdb
   db:
     image: postgres:15
     container_name: db
