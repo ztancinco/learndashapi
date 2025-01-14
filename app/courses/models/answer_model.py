@@ -3,7 +3,7 @@ Model for Answer.
 """
 
 from django.db import models
-from .question_model import QuizModel
+from .quiz_model import QuizModel
 
 class AnswerModel(models.Model):
     """

@@ -1,14 +1,10 @@
 """
-Serializers for the Quizzes app.
-
-This file contains serializers for the `QuizModel`, `QuestionModel`, and 
-`AnswerModel` to transform them into JSON format and handle incoming data 
-for the API views.
+Serializers for Quiz.
 """
 
 from rest_framework import serializers
+from ..models.quiz_model import QuizModel
 from .question_serializer import QuestionSerializer
-from .quizzes_model import QuizModel
 
 class QuizSerializer(serializers.ModelSerializer):
     """

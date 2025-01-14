@@ -7,7 +7,7 @@ serialization of the UserModel for use in user-related API operations.
 """
 
 from rest_framework import serializers
-from .dash_users_model import DashUserModel
+from ..models.dash_user_model import DashUserModel
 
 class UserSerializer(serializers.ModelSerializer):
     """

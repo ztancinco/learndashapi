@@ -3,18 +3,18 @@ Serializer for Courses.
 """
 
 from rest_framework import serializers
-from ..courses.courses_model import CoursesModel
-from ..courses.lessons_serializer import LessonsSerializer
+from ..models.course_model import CourseModel
+from .lesson_serializer import LessonsSerializer
 
-class CoursesSerializer(serializers.ModelSerializer):
+class CourseSerializer(serializers.ModelSerializer):
     """
-    Serializer for the CoursesModel.
+    Serializer for the CourseModel.
     """
     lessons = LessonsSerializer(many=True, read_only=True)
 
     class Meta:
         """
-        Meta class for CoursesSerializer.
+        Meta class for CourseSerializer.
         """
-        model = CoursesModel
+        model = CourseModel
         fields = ['id', 'title', 'description', 'instructor', 'created_at', 'lessons']

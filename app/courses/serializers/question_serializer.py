@@ -3,7 +3,7 @@ Serializer for Question.
 """
 
 from rest_framework import serializers
-from .question_model import QuestionModel
+from ..models.question_model import QuestionModel
 from .answer_serializer import AnswerSerializer
 
 class QuestionSerializer(serializers.ModelSerializer):

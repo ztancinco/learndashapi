@@ -3,7 +3,7 @@ Serializer for Lessson.
 """
 
 from rest_framework import serializers
-from ..courses.lessons_model import LessonsModel
+from ..models.lesson_model import LessonsModel
 
 class LessonsSerializer(serializers.ModelSerializer):
     """

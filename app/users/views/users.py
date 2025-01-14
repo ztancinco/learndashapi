@@ -5,8 +5,8 @@ This file contains views related to user management, such as listing all users,
 retrieving a single user, and updating user details.
 """
 from rest_framework import generics
-from .dash_users_model import DashUserModel
-from .users_serializer import UserSerializer
+from ..models.dash_user_model import DashUserModel
+from ..serializers.users import UserSerializer
 
 class UsersListView(generics.ListAPIView):
     """
