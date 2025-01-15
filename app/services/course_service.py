@@ -1,21 +1,19 @@
 """
 Service for managing courses.
 
-This is a service class to handle actions related to courses
+This is a service class to handle actions related to courses.
 """
 
 from django.shortcuts import get_object_or_404
 from ..courses.models.course_model import CourseModel
 from ..courses.serializers.course_serializer import CourseSerializer
 
-
 class CoursesService:
     """
     Service class for handling course-related operations.
     """
 
-    @staticmethod
-    def get_all_courses():
+    def get_all_courses(self):
         """
         Retrieve all courses and serialize them.
         """
@@ -23,8 +21,7 @@ class CoursesService:
         serializer = CourseSerializer(courses, many=True)
         return serializer.data
 
-    @staticmethod
-    def get_course_by_id(course_id):
+    def get_course_by_id(self, course_id):
         """
         Retrieve a course by its ID and serialize it.
 
@@ -35,8 +32,7 @@ class CoursesService:
         serializer = CourseSerializer(course)
         return serializer.data
 
-    @staticmethod
-    def create_course(data):
+    def create_course(self, data):
         """
         Create a new course.
 
@@ -48,8 +44,7 @@ class CoursesService:
         serializer.save()
         return serializer.data
 
-    @staticmethod
-    def update_course(course_id, data):
+    def update_course(self, course_id, data):
         """
         Update an existing course.
 
@@ -63,8 +58,7 @@ class CoursesService:
         serializer.save()
         return serializer.data
 
-    @staticmethod
-    def delete_course(course_id):
+    def delete_course(self, course_id):
         """
         Delete a course by its ID.
 

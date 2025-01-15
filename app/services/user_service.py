@@ -11,8 +11,7 @@ class DashUsersService:
     Service class for handling user-related operations.
     """
 
-    @staticmethod
-    def get_all_users():
+    def get_all_users(self):
         """
         Retrieve all users and serialize them.
         """
@@ -20,8 +19,7 @@ class DashUsersService:
         serializer = UserSerializer(users, many=True)
         return serializer.data
 
-    @staticmethod
-    def get_user_by_id(user_id):
+    def get_user_by_id(self, user_id):
         """
         Retrieve a user by its ID and serialize it.
 
@@ -32,8 +30,7 @@ class DashUsersService:
         serializer = UserSerializer(user)
         return serializer.data
 
-    @staticmethod
-    def create_user(data):
+    def create_user(self, data):
         """
         Create a new user.
 
@@ -45,8 +42,7 @@ class DashUsersService:
         serializer.save()
         return serializer.data
 
-    @staticmethod
-    def update_user(user_id, data):
+    def update_user(self, user_id, data):
         """
         Update an existing user.
 
@@ -60,8 +56,7 @@ class DashUsersService:
         serializer.save()
         return serializer.data
 
-    @staticmethod
-    def delete_user(user_id):
+    def delete_user(self, user_id):
         """
         Soft delete a user by its ID.
 

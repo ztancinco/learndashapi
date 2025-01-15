@@ -11,11 +11,11 @@ Models:
 """
 
 from django.db import models
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import BaseUserManager, AbstractUser
 from ...abstract.soft_delete_model import SoftDeleteModel
 
 
-class DashUserModelManager(BaseUserManager, SoftDeleteModel):
+class DashUserModelManager(BaseUserManager):
     """
     Custom manager for DashUserModel.
 
@@ -68,7 +68,7 @@ class DashUserModelManager(BaseUserManager, SoftDeleteModel):
         ]
 
 
-class DashUserModel(models.Model):
+class DashUserModel(SoftDeleteModel, AbstractUser):
     """
     Custom user model for the Dash application.
 
@@ -100,9 +100,9 @@ class DashUserModel(models.Model):
     role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
     bio = models.TextField(blank=True, null=True)
 
-    created_at = models.DateTimeField(auto_now_add=True)  # Created timestamp
-    updated_at = models.DateTimeField(auto_now=True)  # Updated timestamp
-    deleted_at = models.DateTimeField(null=True, blank=True)  # Soft delete timestamp
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     groups = models.ManyToManyField(
         'auth.Group',
@@ -122,9 +122,6 @@ class DashUserModel(models.Model):
     class Meta:
         """
         Meta options for DashUserModel.
-
-        This specifies the database table name for the user model, which is 
-        'dash_users', instead of the default 'auth_user'.
         """
         db_table = 'dash_users'
 

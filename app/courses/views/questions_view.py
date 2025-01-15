@@ -6,7 +6,7 @@ Provides endpoints for retrieving, creating, updating, and deleting questions.
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from ...services.quiz_service import QuestionService
+from ...services.question_service import QuestionService
 
 class QuestionsView(APIView):
     """
@@ -14,13 +14,20 @@ class QuestionsView(APIView):
     Provides endpoints for retrieving, creating, updating, and deleting questions.
     """
 
+    def __init__(self, **kwargs):
+        """
+        Constructor to inject QuestionService into the view.
+        """
+        super().__init__(**kwargs)
+        self.question_service = QuestionService()
+
     def get(self, quiz_id=None):
         """
         Retrieve all questions for a given quiz.
         """
         if not quiz_id:
             return self._error_response("quiz_id is required to retrieve questions.")
-        questions = QuestionService.get_all_questions(quiz_id)
+        questions = self.question_service.get_all_questions(quiz_id)
         return Response(questions, status=status.HTTP_200_OK)
 
     def post(self, request, quiz_id=None):
@@ -29,7 +36,7 @@ class QuestionsView(APIView):
         """
         if not quiz_id:
             return self._error_response("quiz_id is required to create a question.")
-        question = QuestionService.create_question(quiz_id, request.data)
+        question = self.question_service.create_question(quiz_id, request.data)
         return Response(question, status=status.HTTP_201_CREATED)
 
     def put(self, request, question_id=None):
@@ -38,7 +45,7 @@ class QuestionsView(APIView):
         """
         if not question_id:
             return self._error_response("question_id is required to update a question.")
-        question = QuestionService.update_question(question_id, request.data)
+        question = self.question_service.update_question(question_id, request.data)
         return Response(question, status=status.HTTP_200_OK)
 
     def delete(self, question_id=None):
@@ -47,7 +54,7 @@ class QuestionsView(APIView):
         """
         if not question_id:
             return self._error_response("question_id is required to delete a question.")
-        QuestionService.delete_question(question_id)
+        self.question_service.delete_question(question_id)
         return Response(
             {"message": "Question deleted successfully."},
             status=status.HTTP_204_NO_CONTENT
