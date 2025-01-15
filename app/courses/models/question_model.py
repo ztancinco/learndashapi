@@ -22,6 +22,7 @@ class QuestionModel(SoftDeleteModel):
         """
         Meta options for QuestionModel.
         """
+        db_table = 'questions'
         indexes = [
             models.Index(fields=['deleted_at']),
         ]

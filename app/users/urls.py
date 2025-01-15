@@ -1,10 +1,10 @@
 """
-URLs for users
+URLs for Dash users.
 """
 
 from django.urls import path
-from .views.users import UsersListView
+from ..users.views.users_view import DashUsersView
 
 urlpatterns = [
-    path('', UsersListView.as_view(), name='user-list'),
+    path('', DashUsersView.as_view(), name='dash-user-list'),
 ]

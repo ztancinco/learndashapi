@@ -1,7 +1,7 @@
 """
-View for listing and creating courses.
+View for listing ,creating and deleting courses.
 
-This file contains the view class for handling course listing and creation.
+This file contains the view class for handling courses
 """
 
 from rest_framework.views import APIView

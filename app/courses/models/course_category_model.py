@@ -22,6 +22,7 @@ class CourseCategoryModel(SoftDeleteModel):
         """
         Meta options for CourseCategoryModel.
         """
+        db_table = 'course_categories'
         indexes = [
             models.Index(fields=['deleted_at']),
         ]

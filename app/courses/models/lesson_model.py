@@ -35,6 +35,7 @@ class LessonsModel(SoftDeleteModel):
         
         - Ensures indexing on `deleted_at` for optimized querying.
         """
+        db_table = 'lessons'
         indexes = [
             models.Index(fields=['deleted_at']),
         ]
