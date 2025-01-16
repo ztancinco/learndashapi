@@ -11,7 +11,7 @@ Models:
 """
 
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractUser
+from django.contrib.auth.models import BaseUserManager
 from ...abstract.soft_delete_model import SoftDeleteModel
 
 
@@ -68,7 +68,7 @@ class DashUserModelManager(BaseUserManager):
         ]
 
 
-class DashUserModel(SoftDeleteModel, AbstractUser):
+class DashUserModel(SoftDeleteModel, BaseUserManager):
     """
     Custom user model for the Dash application.
 
@@ -94,11 +94,12 @@ class DashUserModel(SoftDeleteModel, AbstractUser):
     )
 
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)  # Password field
+    password = models.CharField(max_length=128)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
     bio = models.TextField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
