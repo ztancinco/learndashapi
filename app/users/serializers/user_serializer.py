@@ -11,6 +11,9 @@ class UserSerializer(serializers.ModelSerializer):
     Serializer for DashUserModel to handle serialization and validation of user data.
     """
 
+    first_name = serializers.CharField(required=True, allow_blank=False)
+    last_name = serializers.CharField(required=True, allow_blank=False)
+
     class Meta:
         """
         Meta options for UserSerializer.
@@ -24,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
             'role',
             'bio',
             'created_at',
-            'updated_at', 
+            'updated_at',
             'deleted_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'deleted_at']

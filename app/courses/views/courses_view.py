@@ -7,7 +7,7 @@ This file contains the view class for handling courses.
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from ...services.course_service import CoursesService
+from ...services.course_service import CourseService
 
 class CoursesView(APIView):
     """
@@ -19,7 +19,7 @@ class CoursesView(APIView):
         Initialize CoursesService as an instance variable.
         """
         super().__init__(*args, **kwargs)
-        self.course_service = CoursesService()
+        self.course_service = CourseService()
 
     def get(self, _, course_id=None):
         """
