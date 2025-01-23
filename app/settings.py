@@ -33,18 +33,19 @@ INSTALLED_APPS = [
     'app.courses',
     'app.users',
     'rest_framework',
-    'corsheaders',  # Fixed missing comma here
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # CORS middleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.middleware.DynamicRouteGuardMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
